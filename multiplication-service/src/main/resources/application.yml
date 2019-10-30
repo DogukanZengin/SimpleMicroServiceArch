@@ -1,0 +1,24 @@
+spring:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+  datasource:
+    url: jdbc:h2:file:~/social-multiplication;AUTO_SERVER=TRUE
+    driver-class-name: org.h2.Driver
+multiplication:
+  exchange : multiplication_exchange
+  solved:
+    key: multiplication.solved
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+server:
+  port: 8080
