@@ -95,6 +95,19 @@ public class GameServiceImplTest {
         assertThat(stats.getBadges()).containsOnly(Badge.LUCKY_NUMBER);
     }
 
+    @Test
+    public void getScoreForAttemptTest(){
+        Long userId = 1L;
+        Long attemptId = 30L;
+        ScoreCard scoreCard =  new ScoreCard(userId, attemptId);
+        given(scoreCardRepository.findByAttemptId(attemptId)).willReturn(scoreCard);
+
+        ScoreCard score = gameService.getScoreForAttempt(attemptId);
+
+        assertThat(score.getUserId()).isEqualTo(userId);
+        assertThat(score.getAttemptId()).isEqualTo(attemptId);
+    }
+
     private List<ScoreCard> createNScoreCards(int n, Long userId){
         return IntStream.range(0,n).mapToObj(i -> new ScoreCard(userId,(long)i)).collect(Collectors.toList());
     }

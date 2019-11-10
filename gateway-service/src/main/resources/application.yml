@@ -20,6 +20,10 @@ zuul:
       path: /stats/**
       serviceId: gamification
       strip-prefix: false
+    scores:
+      path: /scores/**
+      serviceId: gamification
+      strip-prefix: false
   ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
 eureka:
   client:

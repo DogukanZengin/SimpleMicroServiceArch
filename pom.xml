@@ -14,5 +14,6 @@
         <module>gateway-service</module>
         <module>registry-service-consul</module>
         <module>registry-service</module>
+        <module>e2e-tests</module>
     </modules>
 </project>
