@@ -29,9 +29,9 @@ public class MultiplicationFeatureSteps {
     }
 
     @When("^the user ([^\\s]+) sends (\\d+) ([^\\s]+) attempts$")
-    public void the_user_sends_attemtps(final String userAlias,
+    public void the_user_sends_attempts(final String userAlias,
                                         final int attempts,
-                                        final String isRight) throws Throwable{
+                                        final String isRight){
         int attemptsSent = IntStream.range(0,attempts)
                 .mapToObj(i -> app.sendAttempt(userAlias,10,10, "right".equals(isRight) ? 100 :258))
                 .peek(response -> lastAttemptResponse = response).mapToInt(response -> response.isCorrect() ? 1 : 0)

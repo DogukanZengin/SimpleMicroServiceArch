@@ -15,7 +15,7 @@ public class MultiplicationApplication {
     private static final String CONTEXT_ATTEMPTS = "/results";
     private static final String CONTEXT_SCORE = "/scores/";
     private static final String CONTEXT_STATS = "/stats";
-    private static final String CONTEXT_USERS = "/users";
+    private static final String CONTEXT_USERS = "/users/";
     private static final String CONTEXT_LEADERBOARD = "/leaders";
     private static final String CONTEXT_DELETE_GAME = "/gamification/admin/delete-db";
     private static final String CONTEXT_DELETE_MULT = "/multiplication/admin/delete-db";
