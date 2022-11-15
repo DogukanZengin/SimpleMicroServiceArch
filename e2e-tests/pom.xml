@@ -16,7 +16,7 @@
     <project.report.outputEncoding>UTF-8</project.report.outputEncoding>
     <java.version>11</java.version>
     <cucumber.version>4.7.2</cucumber.version>
-    <jackson2.version>2.10.0.pr3</jackson2.version>
+    <jackson2.version>2.12.7.1</jackson2.version>
   </properties>
 
   <dependencies>
