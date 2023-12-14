@@ -21,6 +21,16 @@ on:
       destination-aws-region:
         description: Destination AWS region
         type: string
+      call-flows:
+        description: Call Flows
+        type: boolean
+        required: false
+        default: true
+      call-flow-modules:
+        description: Call Flow Modules
+        type: boolean
+        required: false
+        default: true            
       queues:
         description: Queues
         type: boolean
