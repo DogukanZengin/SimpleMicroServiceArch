@@ -1,0 +1,61 @@
+name: Run Call Flow Promotion
+run-name: ${{ github.actor }} is running call flow promotion 🚀
+on:
+  workflow_dispatch:
+    inputs:
+      source:
+        description: Source Amazon Connect Instance ID
+        type: string
+      source-aws-account:
+        description: Source Account ID to access connect
+        type: string
+      source-aws-region:
+        description: Source AWS region
+        type: string
+      destination:
+        description: Destination Amazon Connect Instance ID
+        type: string
+      destination-aws-account:
+        description: Destination Account ID to access connect
+        type: string
+      destination-aws-region:
+        description: Destination AWS region
+        type: string
+      queues:
+        description: Include Queues
+        type: boolean
+        required: false  
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  Run-Promotion:
+    runs-on: ubuntu-latest
+    name: Run promotion
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: promotion-tool-runnable
+      - name: Set up JDK 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17
+      - uses: mcblair/configure-aws-profile-action@v0.1.1
+        with:
+          role-arn: arn:aws:iam::${{ github.event.inputs.source-aws-account }}:role/github-ccfpt-admin-role
+          profile-name: source
+          region: ${{ github.event.inputs.source-aws-region }}
+      - uses: mcblair/configure-aws-profile-action@v0.1.1
+        with:
+          role-arn: arn:aws:iam::${{ github.event.inputs.destination-aws-account }}:role/github-ccfpt-admin-role
+          profile-name: destination
+          region: ${{ github.event.inputs.destination-aws-region }}
+      - name: Run the promotion application
+        run: ./mvnw spring-boot:run
+        env:
+          AWS_CONFIG_CONNECT_SOURCE_INSTANCE_ID: ${{ github.event.inputs.source }}
+          AWS_CONFIG_CONNECT_DESTINATION_INSTANCE_ID: ${{ github.event.inputs.destination }}
+          AWS_CONFIG_CONNECT_SOURCE_REGION: ${{ github.event.inputs.source-aws-region }}
+          AWS_CONFIG_CONNECT_DESTINATION_REGION: ${{ github.event.inputs.destination-aws-region }}
+          AWS_CONFIG_CONNECT_SOURCE_PROFILE: source
+          AWS_CONFIG_CONNECT_DESTINATION_PROFILE: destination
