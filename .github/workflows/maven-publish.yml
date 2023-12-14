@@ -24,7 +24,8 @@ on:
       queues:
         description: Include Queues
         type: boolean
-        required: false  
+        required: false
+        default: true
 permissions:
   id-token: write
   contents: read
