@@ -22,10 +22,30 @@ on:
         description: Destination AWS region
         type: string
       queues:
-        description: Include Queues
+        description: Queues
         type: boolean
         required: false
         default: true
+      quick-connects:
+        description: Quick Connects
+        type: boolean
+        required: false
+        default: false
+      hours-of-operation:
+        description: Hours Of Operations
+        type: boolean
+        required: false
+        default: false
+      security-profiles:
+        description: Security Profiles
+        type: boolean
+        required: false
+        default: false     
+      routing-profiles:
+        description: Routing Profiles
+        type: boolean
+        required: false
+        default: false             
 permissions:
   id-token: write
   contents: read
